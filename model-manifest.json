@@ -1,0 +1,219 @@
+{
+  "body": {
+    "file": "body.onnx",
+    "bytes": 11920537,
+    "ir_version": 8,
+    "opset": [
+      [
+        "",
+        17
+      ]
+    ],
+    "inputs": [
+      {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          416,
+          416
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          300,
+          57
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "ops": [
+      "Add",
+      "Cast",
+      "Concat",
+      "Constant",
+      "ConstantOfShape",
+      "Conv",
+      "Div",
+      "Equal",
+      "Expand",
+      "Flatten",
+      "Gather",
+      "GatherElements",
+      "MatMul",
+      "MaxPool",
+      "Mod",
+      "Mul",
+      "ReduceMax",
+      "Reshape",
+      "Resize",
+      "Shape",
+      "Sigmoid",
+      "Slice",
+      "Softmax",
+      "Split",
+      "Sub",
+      "TopK",
+      "Transpose",
+      "Unsqueeze",
+      "Where"
+    ],
+    "inference_shapes": [
+      [
+        1,
+        300,
+        57
+      ]
+    ],
+    "finite": true,
+    "sha256": "18163e2fc54705af97152872aff7f1df54965dc69e26336b3ae909cff331c5bc"
+  },
+  "racket": {
+    "file": "racket.onnx",
+    "bytes": 10701975,
+    "ir_version": 8,
+    "opset": [
+      [
+        "",
+        17
+      ]
+    ],
+    "inputs": [
+      {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          84,
+          8400
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "ops": [
+      "Add",
+      "Concat",
+      "Constant",
+      "Conv",
+      "Div",
+      "Gather",
+      "MatMul",
+      "MaxPool",
+      "Mul",
+      "Reshape",
+      "Resize",
+      "Shape",
+      "Sigmoid",
+      "Slice",
+      "Softmax",
+      "Split",
+      "Sub",
+      "Transpose"
+    ],
+    "inference_shapes": [
+      [
+        1,
+        84,
+        8400
+      ]
+    ],
+    "finite": true,
+    "sha256": "0b6c1ea8ca900c31dac1a8f9ce219fc5342bc9f0c982063294c88d43f231d9a2"
+  },
+  "racket-pose": {
+    "file": "racket-pose.onnx",
+    "bytes": 52682570,
+    "ir_version": 8,
+    "opset": [
+      [
+        "",
+        17
+      ]
+    ],
+    "inputs": [
+      {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          256,
+          256
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "simcc_x",
+        "shape": [
+          1,
+          5,
+          512
+        ],
+        "type": "tensor(float)"
+      },
+      {
+        "name": "simcc_y",
+        "shape": [
+          1,
+          5,
+          512
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "ops": [
+      "Add",
+      "Clip",
+      "Concat",
+      "Constant",
+      "Conv",
+      "Div",
+      "GlobalAveragePool",
+      "HardSigmoid",
+      "MatMul",
+      "MaxPool",
+      "Mul",
+      "ReduceL2",
+      "Relu",
+      "Reshape",
+      "Shape",
+      "Sigmoid",
+      "Slice",
+      "Split",
+      "Squeeze",
+      "Transpose",
+      "Unsqueeze"
+    ],
+    "inference_shapes": [
+      [
+        1,
+        5,
+        512
+      ],
+      [
+        1,
+        5,
+        512
+      ]
+    ],
+    "finite": true,
+    "sha256": "dff0ff07577d6b9acfe31efea1519e87c26f204f5a80c5c407ddfa43f0dd5cde"
+  }
+}

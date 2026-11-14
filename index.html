@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f5ef"><title>CourtLine · 人体与球拍实时识别</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header class="masthead"><a href="./" class="brand" aria-label="CourtLine首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 26 25 6M7 9c5-8 19-7 19 2 0 8-11 12-17 7S3 12 7 9Z"/><path d="m8 6 14 12M5 11l12 11M15 2 3 15M23 5 9 21"/></svg><span>CourtLine<span class="brand-dot">.</span></span></a><span class="privacy"><span class="status-dot"></span>画面仅在本机处理</span><a href="./help.html" class="help-link" target="_blank" rel="noopener">使用说明 <span>↗</span></a></header>
+<main>
+<section class="intro"><div><span class="eyebrow">YOUR MOTION, IN FOCUS</span><h1>让每一次挥拍，<br class="mobile-break">清晰可见<span>。</span></h1><p>在浏览器中观察人体姿态与球拍轴线。打开摄像头，即可开始。</p></div><div class="intro-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42"/><path d="M15 25c40 0 60 30 62 64M85 75C45 75 25 45 23 11"/></svg><span>BODY + RACKET<br>LIVE MOTION STUDY</span></div></section>
+<section class="workspace" aria-label="实时识别工作区">
+<div class="viewer-column">
+<div class="viewer" id="viewer">
+<canvas id="output" width="1280" height="720" aria-label="人体与球拍标注画面"></canvas>
+<div id="empty-state" class="empty-state"><div class="court-drawing" aria-hidden="true"><svg viewBox="0 0 300 190"><path d="M65 36h170l50 120H15ZM47 81h206M150 36v120M65 36v120M235 36v120M15 104h270"/><circle cx="157" cy="90" r="9"/><path d="m155 104-5 26-19 27m20-28 18 26m-16-47-23 8-13-18m37 11 19 13 21-30"/><path d="m192 92 13-19"/><ellipse cx="211" cy="66" rx="9" ry="15" transform="rotate(30 211 66)"/></svg></div><h2>你的训练画面将在这里呈现</h2><p>允许摄像头访问，或选择一段本地视频</p><span class="illustration-note">示意图 · 非识别结果</span></div>
+<div class="viewer-top"><span class="live-pill" id="live-pill"><i></i><span id="source-status">尚未开始</span></span><span id="backend-tag">本地推理</span></div>
+<div class="viewer-bottom"><div class="legend"><span><i class="body-color"></i>人体骨架</span><span><i class="racket-color"></i>球拍轴线</span></div><button id="fullscreen" class="icon-button" aria-label="全屏显示" title="全屏显示">⛶</button></div>
+<div id="loading-overlay" class="loading-overlay" hidden><span class="spinner"></span><strong id="loading-title">正在准备识别模型</strong><p id="loading-message" role="status">首次启动需要下载模型，请稍候</p><button id="cancel-load" class="text-button">取消</button></div>
+</div>
+<div class="metrics" aria-label="识别状态"><div><span class="metric-label">分析帧率</span><strong id="fps">—<small> FPS</small></strong></div><div><span class="metric-label">单帧处理</span><strong id="latency">—<small> ms</small></strong></div><div><span class="metric-label">人体姿态</span><strong id="body-status" class="metric-state">待识别</strong></div><div><span class="metric-label">球拍轴线</span><strong id="racket-status" class="metric-state">待识别</strong></div></div>
+<p id="notice" class="notice" role="status" aria-live="polite">首次启动会加载本地识别模型。建议使用最新版 Chrome 或 Edge。</p>
+</div>
+<aside class="controls">
+<div class="control-heading"><span class="eyebrow">SESSION</span><h2>开始你的训练</h2></div>
+<label class="field-label" for="camera-select">摄像头</label><div class="select-row"><select id="camera-select"><option value="">默认摄像头</option></select><button class="refresh-button" id="refresh-cameras" aria-label="刷新摄像头列表" title="刷新摄像头列表">↻</button></div>
+<label class="field-label" for="backend-select">运行方式</label><select id="backend-select"><option value="auto">自动选择 · 优先 GPU</option><option value="wasm">CPU 兼容模式</option></select>
+<div class="toggle-row"><label for="mirror">镜像显示</label><input id="mirror" type="checkbox" role="switch"></div>
+<button id="start-camera" class="primary-button"><span>开启摄像头</span><span aria-hidden="true">↗</span></button>
+<button id="stop" class="stop-button" disabled>停止识别</button>
+<div class="or"><span></span>或<span></span></div>
+<label class="upload-button" for="video-file"><span aria-hidden="true">＋</span> 选择本地视频<input id="video-file" type="file" accept="video/*"></label><p class="local-note">视频在浏览器中读取，不会上传。</p>
+<div class="tips"><span class="tips-number">01 — 准备就绪</span><p>保持全身与球拍入镜，光线充足，背景尽量简洁。</p><span class="tips-number">02 — 自然挥动</span><p>青色表示人体，橙色表示球拍。遮挡或识别不可靠时，线条会暂时隐藏。</p></div>
+<div class="session-footer"><span class="mini-dot"></span>无需安装 Python · 无云端推理费用</div>
+</aside>
+</section>
+<footer class="page-footer"><span>COURTLINE / MOTION LAB</span><p>用于动作观察的二维自动标注，不能代替精确三维测量。速度取决于你的电脑与浏览器。</p></footer>
+</main>
+<video id="input-video" playsinline muted hidden></video><canvas id="capture" hidden></canvas>
+<script type="module" src="./app.js"></script>
+</body></html>
